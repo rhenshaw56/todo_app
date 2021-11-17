@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && export NODE_ENV=development && node build/app.js",
+    "start": "npm run build && export NODE_ENV=development && node build/index.js",
+    "start:dev:db": "./scripts/start-db.sh",
     "test": "export NODE_ENV=test && jest --coverage",
-    "test:dev": "export NODE_ENV=test && jest --watch"
+    "test:dev": "export NODE_ENV=test && jest --watch",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts"
   },
   "keywords": [
     "todo"
@@ -20,7 +22,10 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "helmet": "^4.6.0"
+    "helmet": "^4.6.0",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.40"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
