@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && export NODE_ENV=development && node build/index.js",
-    "start:dev:db": "./scripts/start-db.sh",
+    "start": "npm run build && export NODE_ENV=development && node build/server.js",
     "test": "export NODE_ENV=test && jest --coverage",
     "test:dev": "export NODE_ENV=test && jest --watch",
-    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts"
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts",
+    "typeorm:test": "ts-node ./node_modules/typeorm/cli -f ./specHelpers/ormconfig.ts",
+    "sync:schema": "yarn run typeorm:cli schema:sync",
+    "sync:test:schema": "yarn run typeorm:test schema:sync"
   },
   "keywords": [
     "todo"
@@ -42,12 +44,16 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "iconv-lite": "^0.6.3",
     "jest": "^27.3.1",
     "jest-extended": "^1.1.0",
     "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
+    "sql.js": "^1.6.2",
+    "superagent": "^6.1.0",
+    "supertest": "^6.1.6",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.11.0",

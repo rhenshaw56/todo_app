@@ -124,3 +124,4 @@ seeds/
 .migrations/
 
 src/.service/
+.vscode

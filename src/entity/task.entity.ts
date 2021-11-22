@@ -1,10 +1,14 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Task {
-  @PrimaryGeneratedColumn() public id!: number;
+@Entity('tasks')
+export class TaskEntity {
+  @PrimaryGeneratedColumn() public id?: number;
 
   @Column() name!: string;
 
-  @Column() status!: 'in-progress' | 'completed';
+  @Column({
+    type: 'enum',
+    enum: ['in-progress', 'completed'],
+    default: 'in-progress',
+  }) status!: 'in-progress' | 'completed';
 }

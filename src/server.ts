@@ -1,14 +1,25 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import helmet from 'helmet';
+import 'dotenv/config';
+import 'reflect-metadata';
+import { createConnection, Connection } from 'typeorm';
+import app from './app';
+import * as config from './ormconfig';
 
-const app = express();
+if (!process.env.PORT) {
+  process.exit(1);
+}
 
-app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.json());
+const PORT: number = parseInt(process.env.PORT as string, 10);
 
-export default app;
+createConnection(config)
+  .catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err.stack);
+    process.exit(1);
+  })
+  .then((connection: Connection) => {
+    app.set('connection', connection);
+    app.listen(PORT, () => {
+      // eslint-disable-next-line no-console
+      console.log(`Server up @ port ${PORT}`);
+    });
+  });
