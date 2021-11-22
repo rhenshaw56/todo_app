@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && export NODE_ENV=development && node build/server.js",
+    "start": "npm run build && export NODE_ENV=development && node build/src/server.js",
     "test": "export NODE_ENV=test && jest --coverage",
     "test:dev": "export NODE_ENV=test && jest --watch",
     "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts",

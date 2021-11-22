@@ -9,13 +9,13 @@ const config: ConnectionOptions = {
   port: Number(process.env.DB_PORT),
   synchronize: true,
   logging: false,
-  entities: ['src/entity/**/*.ts'],
-  migrations: ['src/migration/**/*.ts'],
-  subscribers: ['src/subscriber/**/*.ts'],
+  entities: [`${__dirname}/entity/**/*.[tj]s`],
+  migrations: [`${__dirname}/migration/**/*.[tj]s`],
+  subscribers: [`${__dirname}/subscriber/**/*.[tj]s`],
   cli: {
-    entitiesDir: 'src/entity',
-    migrationsDir: 'src/migration',
-    subscribersDir: 'src/subscriber',
+    entitiesDir: `${__dirname}/entity`,
+    migrationsDir: `${__dirname}/migration`,
+    subscribersDir: `${__dirname}/subscriber`,
   },
 };
 
