@@ -12,7 +12,8 @@
     "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts",
     "typeorm:test": "ts-node ./node_modules/typeorm/cli -f ./specHelpers/ormconfig.ts",
     "sync:schema": "yarn run typeorm:cli schema:sync",
-    "sync:test:schema": "yarn run typeorm:test schema:sync"
+    "sync:test:schema": "yarn run typeorm:test schema:sync",
+    "sync:db": "yarn run sync:schema && yarn run sync:test:schema"
   },
   "keywords": [
     "todo"
